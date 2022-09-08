@@ -269,9 +269,9 @@
     
     <category term="Hexo" scheme="https://mycpen.github.io/blog/tags/Hexo/"/>
     
-    <category term="Git" scheme="https://mycpen.github.io/blog/tags/Git/"/>
-    
     <category term="Troubleshooting" scheme="https://mycpen.github.io/blog/tags/Troubleshooting/"/>
+    
+    <category term="Git" scheme="https://mycpen.github.io/blog/tags/Git/"/>
     
   </entry>
   

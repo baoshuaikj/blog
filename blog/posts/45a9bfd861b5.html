@@ -208,7 +208,7 @@ gtag('config', 'G-9CFHJMB7RD');
 <p>作用：若转换器类型匹配到对应类型的==数据==，则将数据按照==关键字传参==的方式传递给==视图函数==</p>
 <p>例子：path(‘page/==\<int:page\>==’, view.xxx)</p>
 <p>==<strong>转换器类型</strong>：str、int、slug、path==</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205042137686.png" alt="image-20220504213759635"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205042137686.png" alt="image-20220504213759635"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>/page/<span class="number">30</span></span><br><span class="line"></span><br><span class="line"> &lt;项目同名文件夹下&gt;/urls.py</span><br><span class="line">urlpatterns = [</span><br><span class="line">    <span class="comment">#http://127.0.0.1:8000/page/3-100</span></span><br><span class="line">    path(<span class="string">&#x27;page/&lt;int:pg&gt;&#x27;</span>, views.pagen_view)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"> &lt;项目同名文件夹下&gt;/views.py</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">pagen_view</span>(<span class="params">request, pg</span>):</span><br><span class="line">    html = <span class="string">&#x27;这是编号为%s的网页!&#x27;</span>%(pg)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(html)</span><br></pre></td></tr></table></figure>
 <p>练习：小计算器</p>
 <p>​        定义一个路由的格式为：</p>
@@ -255,18 +255,18 @@ gtag('config', 'G-9CFHJMB7RD');
 <p>定义</p>
 <p>​        ==请求==是指浏览器端通过==HTTP协议==发送给服务器端的数据</p>
 <p>​        响应是指==服务器端接收到请求后==做相应的处理后再==回复给浏览器端的数据==</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052203494.png" alt="image-20220505220331451"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052203494.png" alt="image-20220505220331451"></p>
 </blockquote>
 <h3 id="请求"><a href="#请求" class="headerlink" title="请求"></a>请求</h3><h4 id="请求样例"><a href="#请求样例" class="headerlink" title="请求样例"></a>请求样例</h4><blockquote>
 <p><strong>请求样例</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052257694.png" alt="image-20220505225754654"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052257694.png" alt="image-20220505225754654"></p>
 </blockquote>
 <h4 id="请求中的方法"><a href="#请求中的方法" class="headerlink" title="请求中的方法"></a>请求中的方法</h4><blockquote>
 <p>根据HTTP标准，HTTP请求可以使用多种请求方法</p>
 <p><code>HTTP1.0</code>定义了三种请求方法：GET，POST和HEAD方法（最常用）</p>
 <p><code>HTTP1.1</code>新增了五种请求方法：OPTIONS，PUT，DELETE，TRACE和CONNECT方法</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052258651.png" alt="image-20220505225851617"></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052259640.png" alt="image-20220505225903610"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052258651.png" alt="image-20220505225851617"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052259640.png" alt="image-20220505225903610"></p>
 </blockquote>
 <h4 id="Django中的请求"><a href="#Django中的请求" class="headerlink" title="Django中的请求"></a>Django中的请求</h4><blockquote>
 <p>请求在Django中实则就是 <code>视图函数的第一个参数</code>，即HttpRequest对象</p>
@@ -288,7 +288,7 @@ gtag('config', 'G-9CFHJMB7RD');
 </blockquote>
 <h3 id="响应"><a href="#响应" class="headerlink" title="响应"></a>响应</h3><h4 id="响应样例"><a href="#响应样例" class="headerlink" title="响应样例"></a>响应样例</h4><blockquote>
 <p><strong>响应样例</strong></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052307158.png" alt="image-20220505230704121"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052307158.png" alt="image-20220505230704121"></p>
 </blockquote>
 <h4 id="响应状态码"><a href="#响应状态码" class="headerlink" title="响应状态码"></a>响应状态码</h4><blockquote>
 <p>HTTP状态码的英文为HTTP Status Code</p>
@@ -299,7 +299,7 @@ gtag('config', 'G-9CFHJMB7RD');
 <p> - <code>404</code> - 请求的资源（网页等）不存在</p>
 <p> - <code>500</code> - 内部服务器错误</p>
 <p>HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052308576.png" alt="image-20220505230809542"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052308576.png" alt="image-20220505230809542"></p>
 </blockquote>
 <h4 id="Django中的响应对象"><a href="#Django中的响应对象" class="headerlink" title="Django中的响应对象"></a>Django中的响应对象</h4><blockquote>
 <p>构造函数格式：</p>
@@ -316,7 +316,7 @@ gtag('config', 'G-9CFHJMB7RD');
 <p> - ‘application/xml’（xml文件）</p>
 <p>-————————————————————————————————-</p>
 <p>HttpResponse子类</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052310989.png" alt="image-20220505231038952"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052310989.png" alt="image-20220505231038952"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>/test_request</span><br><span class="line">  =&gt; http://<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>:<span class="number">8000</span>/page/<span class="number">1</span></span><br><span class="line"></span><br><span class="line"> &lt;项目同名文件夹下&gt;/urls.py</span><br><span class="line">urlpatterns = [</span><br><span class="line">    path(<span class="string">&#x27;test_request&#x27;</span>, views.test_request)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"> &lt;项目同名文件夹下&gt;/views.py</span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse, HttpResponseRedirect</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_request</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">return</span> HttpResponseRedirect(<span class="string">&#x27;/page/1&#x27;</span>)</span><br></pre></td></tr></table></figure>
 </blockquote>
 <hr>

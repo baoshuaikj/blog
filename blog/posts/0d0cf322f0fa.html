@@ -211,7 +211,7 @@ gtag('config', 'G-9CFHJMB7RD');
 <h3 id="POST处理"><a href="#POST处理" class="headerlink" title="POST处理"></a>POST处理</h3><blockquote>
 <p>·POST请求动作，一般用于<code>向服务器提交大量/隐私数据</code></p>
 <p>·客户端通过表单等POST请求将数据传递给服务器端，如：</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052323569.png" alt="image-20220505232318528"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052323569.png" alt="image-20220505232318528"></p>
 <p>·服务器端<code>接收参数</code></p>
 <p>​        通过request.method来判断是否为POST请求，如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> request.method == <span class="string">&#x27;POST&#x27;</span>:</span><br><span class="line"> 处理POST请求的数据并响应</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line"> 处理非POST请求的响应</span><br></pre></td></tr></table></figure>
@@ -226,7 +226,7 @@ gtag('config', 'G-9CFHJMB7RD');
 <p>-————————————————————————————————-</p>
 <p>演示</p>
 <p><a target="_blank" rel="noopener" href="http://127.0.0.1:8000/test_get_post">http://127.0.0.1:8000/test_get_post</a></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052336498.png" alt="image-20220505233651466"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052336498.png" alt="image-20220505233651466"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">post <span class="keyword">is</span> ok</span><br><span class="line">终端</span><br><span class="line">uname <span class="keyword">is</span> cpen</span><br><span class="line"></span><br><span class="line"> &lt;项目同名文件夹下&gt;/urls.py</span><br><span class="line">urlpatterns = [</span><br><span class="line">    ...</span><br><span class="line">    path(<span class="string">&#x27;test_get_post&#x27;</span>, views.test_get_post)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"> &lt;项目同名文件夹下&gt;/views.py</span><br><span class="line">POST_FORM = <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">&lt;form method=&#x27;post&#x27; action=&#x27;/test_get_post&#x27;&gt;</span></span><br><span class="line"><span class="string">    用户名: &lt;input type=&#x27;text&#x27; name=&#x27;uname&#x27;&gt;</span></span><br><span class="line"><span class="string">    &lt;input type=&#x27;submit&#x27; value=&#x27;提交&#x27;&gt;</span></span><br><span class="line"><span class="string">&lt;/form&gt;</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_get_post</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">&#x27;GET&#x27;</span>:</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(POST_FORM)</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
 <p>-————————————————————————————————————————————————————————————————</p>
 <p>小节</p>
@@ -247,7 +247,7 @@ gtag('config', 'G-9CFHJMB7RD');
 </li>
 </ul>
 <p>作用：<code>降低模块间的耦合度（解耦）</code></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052338248.png" alt="image-20220505233857207"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052338248.png" alt="image-20220505233857207"></p>
 </blockquote>
 <h4 id="Django的MTV模式"><a href="#Django的MTV模式" class="headerlink" title="Django的MTV模式"></a>Django的MTV模式</h4><blockquote>
 <p>MTV代表<code>Model-Template-View</code>（模型-模板-视图）模式。</p>
@@ -260,14 +260,14 @@ gtag('config', 'G-9CFHJMB7RD');
 </li>
 </ul>
 <p>作用：<code>降低模块间的耦合度（解耦）</code></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052340887.png" alt="image-20220505234057843"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052340887.png" alt="image-20220505234057843"></p>
 <p>-————————————————————————————————————————————————————————————————</p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052341004.jpg" alt="img"> </p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052341004.jpg" alt="img"> </p>
 </blockquote>
 <h3 id="模板层"><a href="#模板层" class="headerlink" title="模板层"></a>模板层</h3><h4 id="什么是模板"><a href="#什么是模板" class="headerlink" title="什么是模板"></a>什么是模板</h4><blockquote>
 <p>1、模板是可以根据<code>字典</code>数据动态变化的<code>html网页</code></p>
 <p>2、模板可以<code>根据视图中传递的字典数据动态生成相应的HTML网页</code></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052342133.png" alt="image-20220505234226094"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052342133.png" alt="image-20220505234226094"></p>
 </blockquote>
 <h4 id="模板配置"><a href="#模板配置" class="headerlink" title="模板配置"></a>模板配置</h4><blockquote>
 <p>创建模板文件夹 <code>&lt;项目名&gt;/templates</code></p>
@@ -289,7 +289,7 @@ gtag('config', 'G-9CFHJMB7RD');
 <p>-——————————————————————————————————————————-</p>
 <p><strong>演示</strong></p>
 <p><a target="_blank" rel="noopener" href="http://127.0.0.1:8000/test_html">http://127.0.0.1:8000/test_html</a></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052345270.png" alt="image-20220505234508244"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052345270.png" alt="image-20220505234508244"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> &lt;项目同名文件夹下&gt;/urls.py</span><br><span class="line">urlpatterns = [</span><br><span class="line">    ...</span><br><span class="line">    path(<span class="string">&#x27;test_html&#x27;</span>, views.test_html)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"> &lt;项目同名文件夹下&gt;/views.py</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_html</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">from</span> django.template <span class="keyword">import</span> loader</span><br><span class="line">    t = loader.get_template(<span class="string">&#x27;test_html.html&#x27;</span>)</span><br><span class="line">    html = t.render()</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(html)</span><br><span class="line"></span><br><span class="line"> &lt;项目文件夹下&gt;/templates/test_html.html</span><br><span class="line">&lt;h3&gt;我是模板层的~~~~&lt;/h3&gt;</span><br></pre></td></tr></table></figure>
 <p>-————————————————————————————————————————————————————————————————</p>
 <p><strong>方案2</strong> - 通过render() 直接加载并响应模板（特点：方便，大量使用这种）</p>
@@ -298,7 +298,7 @@ gtag('config', 'G-9CFHJMB7RD');
 <p>-——————————————————————————————————————————-</p>
 <p><strong>演示</strong></p>
 <p><a target="_blank" rel="noopener" href="http://127.0.0.1:8000/test_html">http://127.0.0.1:8000/test_html</a></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052346308.png" alt="image-20220505234639279"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052346308.png" alt="image-20220505234639279"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> &lt;项目同名文件夹下&gt;/views.py</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_html</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="comment"># 方案2</span></span><br><span class="line">    <span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;test_html.html&#x27;</span>)</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h4 id="视图层与模板层之间的交互"><a href="#视图层与模板层之间的交互" class="headerlink" title="视图层与模板层之间的交互"></a>视图层与模板层之间的交互</h4><blockquote>
@@ -309,7 +309,7 @@ gtag('config', 'G-9CFHJMB7RD');
 <p>-——————————————————————————————————————————-</p>
 <p><strong>演示</strong></p>
 <p><a target="_blank" rel="noopener" href="http://127.0.0.1:8000/test_html">http://127.0.0.1:8000/test_html</a></p>
-<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="http://image.cpen.top/image/202205052348278.png" alt="image-20220505234825246"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/202205052348278.png" alt="image-20220505234825246"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> &lt;项目同名文件夹下&gt;/urls.py</span><br><span class="line">urlpatterns = [</span><br><span class="line">    ...</span><br><span class="line">    path(<span class="string">&#x27;test_html&#x27;</span>, views.test_html)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"> &lt;项目同名文件夹下&gt;/views.py</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">test_html</span>(<span class="params">request</span>):</span><br><span class="line">    <span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render</span><br><span class="line">    dic = &#123;<span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;peng&#x27;</span>, <span class="string">&#x27;age&#x27;</span>: <span class="number">23</span>&#125;</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">&#x27;test_html.html&#x27;</span>, dic)</span><br><span class="line"></span><br><span class="line"> &lt;项目文件夹下&gt;/templates/test_html.html</span><br><span class="line">&lt;h3&gt;&#123;&#123; username &#125;&#125;是模板层的~~~~&lt;/h3&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <hr>

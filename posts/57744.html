@@ -1,0 +1,612 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>21_Linux基础-ssh服务3 | Mycpen's Blog</title><meta name="keywords" content="Linux,SSH"><meta name="author" content="Mycpen"><meta name="copyright" content="Mycpen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="摘要：博客迁移 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cpen_web → 本站">
+<meta property="og:type" content="article">
+<meta property="og:title" content="21_Linux基础-ssh服务3">
+<meta property="og:url" content="https://mycpen.github.io/blog/posts/57744.html">
+<meta property="og:site_name" content="Mycpen&#39;s Blog">
+<meta property="og:description" content="摘要：博客迁移 https:&#x2F;&#x2F;blog.csdn.net&#x2F;cpen_web → 本站">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://image.cpen.top/image/logo/linux-logo.png">
+<meta property="article:published_time" content="2022-08-28T12:21:00.000Z">
+<meta property="article:modified_time" content="2022-08-28T12:21:01.000Z">
+<meta property="article:author" content="Mycpen">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="SSH">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://image.cpen.top/image/logo/linux-logo.png"><link rel="shortcut icon" href="/blog/img/favicon.png"><link rel="canonical" href="https://mycpen.github.io/blog/posts/57744"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.google-analytics.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/blog/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>var _hmt2 = _hmt2 || [];
+(function() {
+  var hm2 = document.createElement("script");
+  hm2.src = "https://hm.baidu.com/hm.js?a3e67556baaf09ced80d70ff02da3215";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm2, s);
+})();
+</script><script>var _hmt3 = _hmt3 || [];
+(function() {
+  var hm3 = document.createElement("script");
+  hm3.src = "https://hm.baidu.com/hm.js?ff15181f67773ba8bb8893cae3149bb5";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm3, s);
+})();
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-9CFHJMB7RD"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9CFHJMB7RD');
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-SN67ZQ8MR9"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-SN67ZQ8MR9');
+</script><script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-9CFHJMB7RD"></script><script>window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-9CFHJMB7RD');
+</script><script>const GLOBAL_CONFIG = { 
+  root: '/blog/',
+  algolia: undefined,
+  localSearch: {"path":"/blog/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":180,"position":"top","messagePrev":"上次更新在","messageNext":"天之前, 本文的内容可能过时."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '21_Linux基础-ssh服务3',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-08-28 20:21:01'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/blog/css/custom.css" media="defer" onload="this.media='all'"><style type="text/css">#toggle-sidebar {bottom: 80px}</style><style type="text/css">#toggle-sidebar {left: 100px}</style><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Zfour/Butterfly-double-row-display@1.00/cardlistpost.min.css"/>
+<style>#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags:before {content:"\A";
+  white-space: pre;}#recent-posts > .recent-post-item >.recent-post-info > .article-meta-wrap > .tags > .article-meta__separator{display:none}</style>
+<link rel="stylesheet" href="/blog/css/runtime.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-filter-gitcalendar/lib/gitcalendar.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/font-awesome-animation.min.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/tag_plugins.css" media="defer" onload="this.media='all'"><script src="https://cdn.cbd.int/hexo-butterfly-tag-plugins-plus@latest/lib/assets/carousel-touch.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/blog/atom.xml" title="Mycpen's Blog" type="application/atom+xml">
+</head><body><div id="web_bg" style="background:url(https://image.cpen.top/image/wallpaper/dx.jpg);background-attachment: local;background-position: center;background-size: cover;background-repeat: no-repeat;"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">38</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/tags/"><i class="fa-fw fas fa-tags faa-tada"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/link/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-list hide"></i><span> 其他</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/blog/comments/"><i class="fa-fw fas fa-envelope faa-tada"></i><span> 留言板</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/bangumis/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bilibili1"></use></svg><span> 追番</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/artitalk/"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/music/"><i class="fa-fw fas fa-music faa-tada"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/fcircle/"><i class="fa-fw fab fa-artstation faa-tada"></i><span> 朋友圈</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://image.cpen.top/image/logo/linux-logo.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/blog/">Mycpen's Blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/categories/"><i class="fa-fw fas fa-folder-open faa-tada"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/tags/"><i class="fa-fw fas fa-tags faa-tada"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/link/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/blog/about/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-zhifeiji"></use></svg><span> 关于</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="fa-fw fas fa-list hide"></i><span> 其他</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/blog/comments/"><i class="fa-fw fas fa-envelope faa-tada"></i><span> 留言板</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/bangumis/"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bilibili1"></use></svg><span> 追番</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/artitalk/"><i class="fa-fw fas fa-comment-dots faa-tada"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/music/"><i class="fa-fw fas fa-music faa-tada"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/blog/fcircle/"><i class="fa-fw fab fa-artstation faa-tada"></i><span> 朋友圈</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">21_Linux基础-ssh服务3</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-28T12:21:00.000Z" title="发表于 2022-08-28 20:21:00">2022-08-28</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-08-28T12:21:01.000Z" title="更新于 2022-08-28 20:21:01">2022-08-28</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/blog/categories/Linux/">Linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">4.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>18分钟</span></span><span class="post-meta-separator">|</span><span id="" data-flag-title="21_Linux基础-ssh服务3"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="twikoo_visitors"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/blog/posts/57744.html#post-comment"><span id="twikoo-count"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>摘要：博客迁移 <a target="_blank" rel="noopener" href="https://blog.csdn.net/cpen_web"><code>https://blog.csdn.net/cpen_web</code></a> → 本站<span id="more"></span></p>
+<h1 id="21-Linux基础-ssh服务3"><a href="#21-Linux基础-ssh服务3" class="headerlink" title="21_Linux基础-ssh服务3"></a>21_Linux基础-ssh服务3</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cpen_web">博客🔗：https://blog.csdn.net/cpen_web</a></p>
+<hr>
+<h2 id="一-回顾"><a href="#一-回顾" class="headerlink" title="一. 回顾"></a>一. 回顾</h2><h3 id="1-1-ssh"><a href="#1-1-ssh" class="headerlink" title="1.1 ssh"></a>1.1 ssh</h3><p><strong>ssh</strong></p>
+<p>secure shell</p>
+<ul>
+<li>远程登录连接，控制主机</li>
+<li>数据的传输都是加密的</li>
+<li>基于非对称加密技术</li>
+</ul>
+<h3 id="1-2-加密技术"><a href="#1-2-加密技术" class="headerlink" title="1.2 加密技术"></a>1.2 加密技术</h3><p><strong>加密技术</strong></p>
+<p><strong>对称加密</strong></p>
+<ul>
+<li><p>双方共同拥有一把钥匙，其中一方拿着加密，另外一方就拿着解密</p>
+</li>
+<li><p>弊端：这个公钥的钥匙很容易被有心人获取</p>
+</li>
+</ul>
+<p><strong>非对称加密</strong></p>
+<ul>
+<li>使用公钥对进行加解密</li>
+<li>生成一对钥匙，其中一方作为私钥，另一方就是公钥</li>
+<li>私钥是只有自己知道，私钥保存在本地</li>
+<li>公钥是给需要通信的人，公钥可以给其他人</li>
+<li>使用公钥加密，私钥解密，一般用在数据加密传输<br>(A、B 2个人，B给A用加密的方式传输数据，私钥在A手里，B用A的公钥对数据加密)</li>
+<li>使用私钥加密，公钥解密，一般用于认证<br>(A向B发送数据，B用于确认是不是A发送的数据，客户端A用A的私钥对数据进行加密，服务端B拿A的公钥进行解密。只管认证，不管加密性)</li>
+</ul>
+<h3 id="1-3-ssh登录"><a href="#1-3-ssh登录" class="headerlink" title="1.3 ssh登录"></a>1.3 ssh登录</h3><p><strong>ssh登录</strong></p>
+<p>登录方式</p>
+<ul>
+<li>密码登录<br>流程<br>1、客户端发送登录请求<br>2、服务器发送机器的公钥发送给客户端<br>3、客户端用服务器的公钥对密码进行加密，发送给服务端<br>4、服务器收到密文之后，用私钥进行解密，与/etc/shadow进行验证<br>5、返回验证结果</li>
+<li>密钥登录，公钥认证<br>1、客户端生成公钥对<br>2、将客户端的用户公钥发送给服务器，保存在目标用户~/.ssh/authorized_keys<br>3、客户端发送请求，服务器返回1个随机字符串<br>4、客户端收到随机字符串之后，用自己的私钥加密，发送给服务器<br>5、服务器收到密文之后，用客户端的公钥进行解密，拿到随机字符串与生成的字符串比较。返回认证结果(随机字符串其他人拿到了就拿到了，没有任何关系，因为A的公钥很多人都可以有)</li>
+<li>弊端<ul>
+<li>第三方攻击</li>
+<li>A无法判定收到的这个公钥是不是B的</li>
+<li>为了解决这个问题<ul>
+<li>第一次登录的时候会进行人为确认</li>
+<li>确认了之后，将B机器主机公钥存放在~/.ssh/known_hosts，以后每次登录都会进行对比    (如果系统重装后，登录不上，提示known_hosts……，将known_hosts删掉)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>公钥认证</strong></p>
+<p>1、使用命令生成公钥对</p>
+<p>​        ssh-keygen</p>
+<p>​                -t 选项 指定生成的加密算法</p>
+<p>​                默认是rsa算法加密，过程中一直敲回车就可以了</p>
+<p>2、客户端将公钥发送给服务器</p>
+<p>​        保存在目标用户的~/.ssh/authorized_keys</p>
+<p>3、检测权限</p>
+<p>​        authorized_keys 600权限</p>
+<p>​        .ssh 以及家目录都给755以下权限</p>
+<p>或者 允许密码验证登录时(前提条件) # ssh-copy-id wy@192.168.0.39 -p 2233 把公钥发送过去</p>
+<p>[root@cPen_python ~]# ssh-copy-id wy@192.168.0.39 -p 2233    # 注：需要可以支持密码登录</p>
+<h3 id="1-4-ssh远程操作工具"><a href="#1-4-ssh远程操作工具" class="headerlink" title="1.4 ssh远程操作工具"></a>1.4 ssh远程操作工具</h3><p><strong>ssh远程操作工具</strong></p>
+<blockquote>
+<ul>
+<li>ssh<ul>
+<li>远程执行命令，远程登录</li>
+<li>登录方式<ul>
+<li>ssh 服务器ip地址<ul>
+<li>使用当前用户和默认端口登录</li>
+<li>使用客户端的当前用户名，登录到远端服务器的同名用户下，默认端口22<pre><code>(没有同名用户，登录失败)
+</code></pre></li>
+</ul>
+</li>
+<li>ssh 用户名@服务器ip地址<ul>
+<li>登录到远端服务器的指定用户下，使用默认端口22登录</li>
+</ul>
+</li>
+<li>ssh 服务器地址 -l 用户名 -p 端口号<ul>
+<li>指定用户名和端口去登录</li>
+</ul>
+</li>
+<li>ssh -o 接一些配置选项 服务器的ip地址<pre><code>#无序输入yes，自动保存hostkey
+ssh -o StrictHostKeyChecking=no 192.168.0.132 -p 223
+</code></pre></li>
+<li>ssh -i /tmp/id_rsa 指定私钥认证文件<pre><code>默认情况在~/.ssh/这下面找私钥
+</code></pre></li>
+<li>ssh -vvv<pre><code>打印登录过程的详细信息
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h3 id="1-5-服务配置"><a href="#1-5-服务配置" class="headerlink" title="1.5 服务配置"></a>1.5 服务配置</h3><p><strong>服务配置</strong></p>
+<ul>
+<li><strong>服务安装包</strong><ul>
+<li>oepnssh<br>-<br>[root@cPen_python ~]# which ssh<br>/usr/bin/ssh<br>[root@cPen_python ~]# rpm -qf /usr/bin/ssh<br>openssh-clients-7.4p1-21.el7.x86_64</li>
+</ul>
+</li>
+<li><strong>配置文件</strong><ul>
+<li>/etc/ssh/sshd_config    服务端配置文件</li>
+<li>/etc/ssh/ssh_config       客户端配置</li>
+</ul>
+</li>
+<li><strong>主程序</strong><pre><code>    服务端 /usr/sbin/sshd
+    客户端 /usr/bin/ssh
+</code></pre></li>
+<li>重新加载配置<pre><code>    重启服务 service sshd restart/reload
+    kill -1 sshd的pid
+    kill -HUP sshd的pid号
+</code></pre></li>
+</ul>
+<h3 id="1-6-查看ssh服务启动情况"><a href="#1-6-查看ssh服务启动情况" class="headerlink" title="1.6 查看ssh服务启动情况"></a>1.6 查看ssh服务启动情况</h3><p><strong>查看ssh服务启动情况</strong></p>
+<p>1、ps -aux/-ef</p>
+<p>2、pidof sshd</p>
+<p>3、netstat -autpln    所有接口(a)的udp tcp连接，显示出所有程序(p) 监听状态(l) n数字显示端口号</p>
+<p>​        # 注：查看网络连接状态</p>
+<p>​        # ps -eo pid,uid,comm|grep sshd    # 注：<strong>-eo查看特定字段信息</strong></p>
+<p>4、lsof -i:22    打印出程序所需要的文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># ps aux |grep sshd</span></span><br><span class="line">root       1066  0.0  0.1 112924  4316 ?        Ss   09:41   0:00 /usr/sbin/sshd -D</span><br><span class="line">root       1608  0.0  0.1 158928  5608 ?        Ss   09:43   0:00 sshd: root@pts/0</span><br><span class="line">root       9546  0.0  0.0 112824   980 pts/0    S+   11:26   0:00 grep --color=auto sshd</span><br><span class="line">[root@localhost ~]<span class="comment"># ps -ef |grep sshd</span></span><br><span class="line">root       1066      1  0 09:41 ?        00:00:00 /usr/sbin/sshd -D</span><br><span class="line">root       1608   1066  0 09:43 ?        00:00:00 sshd: root@pts/0</span><br><span class="line">root       9550   1612  0 11:26 pts/0    00:00:00 grep --color=auto sshd</span><br><span class="line">[root@localhost ~]<span class="comment"># ps -eo pid,uid,comm|grep sshd	# 注：-eo查看特定字段信息</span></span><br><span class="line">  1066     0 sshd</span><br><span class="line">  1608     0 sshd</span><br></pre></td></tr></table></figure>
+<h3 id="1-7-ssh-agent"><a href="#1-7-ssh-agent" class="headerlink" title="1.7 ssh-agent"></a>1.7 ssh-agent</h3><p><strong>ssh-agent</strong></p>
+<p>​        管理密钥</p>
+<p>​        在你自己的机器上开启这个服务</p>
+<p>​        配置: xshell—&gt; 主机属性—》ssh —》勾选 使用xagent进行身份验证 ;勾选 使用代理转发</p>
+<p>#注：自己的机器是Windows，在Windows上开启ssh-agent服务，现在有A、B 2台机器，A、B两台机器都有Windows的公钥，这种情况开启ssh-agent(xshell里面开启)，A登录B时默认情况会拿windows的公钥进行加密，B机器用Windows的私钥进行解密    必须在xshell里进行操作，这都是xshell的行为</p>
+<hr>
+<h2 id="二-跳板机"><a href="#二-跳板机" class="headerlink" title="二. 跳板机"></a>二. 跳板机</h2><blockquote>
+<p>#注：跳板机给办公人员用的 跳板机/堡垒机 为了保护系统的安全</p>
+<p>#注：使用ssh-agent 访问跳板机和想要访问的主机</p>
+<p>#注：使用场景 阿里的业务 本来有10万台主机(在局域网里面，没有外网，外部不能访问)，我在家里，十万台机器捞出一台，这1台主机可以访问外网(跳板机/堡垒机)，这1台跳板机的配置尤其重要</p>
+<p>开启ssh-agent，把自己主机的公钥添加到目标主机和堡垒机下 (目标主机的权限和堡垒机的权限)</p>
+<p>#注：连到A上，从A跳到B上，B不一定有当前主机的公私钥</p>
+<p>#跳板机 安全加固：</p>
+<p>不能使用root直接登录，使用sudo赋予相应权限</p>
+<p>不能使用默认端口登录</p>
+<p>不能使用密码登录，都使用公钥登录</p>
+<p>添加防火墙配置</p>
+<p>总结：</p>
+<p>#跳板机</p>
+<p>#安全加固</p>
+<p>​        1、不能使用密码登录</p>
+<p>​        2、不能使用root登录</p>
+<p>​        3、修改默认端口</p>
+<p>​        4、添加防火墙配置</p>
+<p>​        5、使用跳板机登录</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br></pre></td><td class="code"><pre><span class="line">示例1：查看路由 ip r</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">[root@cPen_python ~]<span class="comment"># ip r			# 注：查看路由</span></span><br><span class="line">default via 192.168.0.1 dev ens33 proto dhcp metric 100 </span><br><span class="line">192.168.0.0/24 dev ens33 proto kernel scope <span class="built_in">link</span> src 192.168.0.32 metric 100 </span><br><span class="line">[root@cPen_python ~]<span class="comment"># ip r delete default via 192.168.0.1	# 注：删除网关</span></span><br><span class="line">[root@cPen_python ~]<span class="comment"># ip r</span></span><br><span class="line">192.168.0.0/24 dev ens33 proto kernel scope <span class="built_in">link</span> src 192.168.0.32 metric 100 </span><br><span class="line">[root@cPen_python ~]<span class="comment"># ping www.baidu.com		# 注：删除后ping不通外网</span></span><br><span class="line">connect: 网络不可达</span><br><span class="line">[root@cPen_python ~]<span class="comment"># ping 8.8.8.8</span></span><br><span class="line">connect: 网络不可达</span><br><span class="line">[root@cPen_python ~]<span class="comment"># ip r add default via 192.168.0.1	# 注：还原</span></span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例2：A机器登录到B机器(简化登录) vim .ssh/config</span><br><span class="line"><span class="comment">#以后会遇到很多机器，ip地址是记不住的</span></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#A机器登录到B机器，操作前需要先把A机器公钥放到B机器上 进行授权</span></span><br><span class="line"><span class="comment">#不修改全全局配置，只修改个人配置：在用户家目录下创建.隐藏文件</span></span><br><span class="line"><span class="comment">#在客户端上配置(配到自己的主机上)</span></span><br><span class="line"><span class="comment">#注：意思是将机器root@192.168.0.31 -p 2233 取个别名叫B</span></span><br><span class="line"><span class="comment">#ForwardAgent yes				# 注：转发 开启</span></span><br><span class="line"><span class="comment">#StrictHostKeyChecking no		# 注：不需要输入yes 直接把key保存在known_hosts里面</span></span><br><span class="line"><span class="comment">#ServerAliveInterval 60			# 注：存活状态，检测服务存活状态</span></span><br><span class="line"><span class="comment">#IdentityFile ~/.ssh/id_rsa		# 注：指定认证私钥</span></span><br><span class="line"><span class="comment">#示例如下</span></span><br><span class="line">[root@cPen_python ~]<span class="comment"># vim .ssh/config</span></span><br><span class="line"><span class="comment">###############################################</span></span><br><span class="line">ForwardAgent <span class="built_in">yes</span></span><br><span class="line">StrictHostKeyChecking no</span><br><span class="line">ServerAliveInterval 60</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"><span class="comment">###############################################</span></span><br><span class="line">Host B</span><br><span class="line">    HostName 192.168.0.31</span><br><span class="line">    User    cPen</span><br><span class="line">    Port    2233</span><br><span class="line">[root@cPen_python .ssh]<span class="comment"># chmod 600 config		# 注：授予权限 不执行这条语句 可能会报错</span></span><br><span class="line">[root@cPen_python .ssh]<span class="comment"># ssh B</span></span><br><span class="line">Last login: Mon Nov 23 15:05:16 2020 from 192.168.0.32	<span class="comment"># 注：登录成功</span></span><br><span class="line">[root@cPen_centos8 ~]<span class="comment"># </span></span><br><span class="line"><span class="comment">#注：即简化 # ssh 192.168.0.31 -l root -p 2233 操作 (比如登录到ftp服务器 ssh ftp)</span></span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例3：查看端口连接状态 (客户机想访问服务器的时候使用 客户机上telnet) telnet 192.168.0.31 2233</span><br><span class="line"><span class="comment">#注：这个命令只能测tcp的 udp的测不了，但是大部分服务都是tcp的</span></span><br><span class="line"><span class="comment">#查看端口是否可以访问(即服务是否可达) telnet 192.168.0.31 2233</span></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#ping命令 是查看2台机器网络是否连通</span></span><br><span class="line"><span class="comment">#查看服务是否可达使用 telnet命令</span></span><br><span class="line"><span class="comment">#示例：查看端口是否可达(服务是否可达)</span></span><br><span class="line">[root@cPen_python .ssh]<span class="comment"># yum install telnet -y</span></span><br><span class="line">[root@cPen_python .ssh]<span class="comment"># telnet 192.168.0.31 2233</span></span><br><span class="line">Trying 192.168.0.31...	</span><br><span class="line">Connected to 192.168.0.31.		<span class="comment"># 注：服务可达</span></span><br><span class="line">Escape character is <span class="string">&#x27;^]&#x27;</span>.</span><br><span class="line">SSH-2.0-OpenSSH_8.0</span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例4：提示主机不被信任 WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#注：提示WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!</span></span><br><span class="line">将~/.ssh/known_hosts 删掉</span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例5：永久修改主机名 hostnamectl set-hostname <span class="string">&quot;A&quot;</span></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#方法1</span></span><br><span class="line">[root@cPen_python .ssh]<span class="comment"># hostnamectl set-hostname &quot;A&quot;</span></span><br><span class="line"><span class="comment">#注：其实是修改 /etc/hostname</span></span><br><span class="line">[root@A ~]<span class="comment"># less /etc/hostname </span></span><br><span class="line"><span class="comment">#方法2</span></span><br><span class="line"><span class="comment">#或者直接修改 /etc/hostname</span></span><br><span class="line"><span class="comment">#临时修改主机名</span></span><br><span class="line">[root@B ~]<span class="comment"># hostname cp</span></span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例6：查看进程数 pstree -p</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#注：看程序树状结构 pstree -p</span></span><br><span class="line">[root@cPen_python .ssh]<span class="comment"># pstree -p |grep sshd</span></span><br><span class="line">           |-sshd(1065)-+-sshd(3782)---bash(3784)</span><br><span class="line">           |            |-sshd(3980)---bash(3982)-+-grep(4318)</span><br><span class="line">           |            |-sshd(4059)---bash(4061)</span><br><span class="line">           |            `-sshd(4288)---bash(4290)</span><br><span class="line"><span class="comment">#注：前面是父程序，后面是父程序创造出来的子程序，子程序分配新的bash环境，bash环境在操作命令grep</span></span><br><span class="line"><span class="comment">#注：父进程创造出子进程，子进程有创造出一个子进程，子进程创造出一个新的bash环境</span></span><br><span class="line"><span class="comment">#-------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">#注：连接到B机器后bash环境多了一个ssh子进程去处理B机器</span></span><br><span class="line">[root@a ~]<span class="comment"># ssh B</span></span><br><span class="line">Last login: Mon Nov 23 15:52:16 2020 from 192.168.0.32</span><br><span class="line">[root@a .ssh]<span class="comment"># pstree -p |grep sshd</span></span><br><span class="line">           |-sshd(1065)-+-sshd(3782)---bash(3784)</span><br><span class="line">           |            |-sshd(3980)---bash(3982)-+-grep(4325)</span><br><span class="line">           |            |-sshd(4059)---bash(4061)---ssh(4323)</span><br><span class="line">           |            `-sshd(4288)---bash(4290)</span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例7：修改客户端配置 ~/.ssh/config</span><br><span class="line"><span class="comment">#配置文件：~/.ssh/config</span></span><br><span class="line"><span class="comment">#工作中使用跳板机代理登录 (客户端的配置，方便开发配置)</span></span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#注：假设现在有A、B、C三台机器，B是跳板机，假设A C不通，A通B，B通C，B通D，B通E…………</span></span><br><span class="line"><span class="comment">#注：B机器当做跳板机，A是自己的本地机，A机器做代理，B机器自动做转发</span></span><br><span class="line"><span class="comment">#注：在本地机A机器中操作</span></span><br><span class="line">[root@a ~]<span class="comment"># vim ~/.ssh/config </span></span><br><span class="line"><span class="comment">###############################################</span></span><br><span class="line">ForwardAgent <span class="built_in">yes</span></span><br><span class="line">StrictHostKeyChecking no</span><br><span class="line">ServerAliveInterval 60</span><br><span class="line">IdentityFile ~/.ssh/id_rsa</span><br><span class="line"><span class="comment">###############################################</span></span><br><span class="line">Host B</span><br><span class="line">    HostName 192.168.0.31</span><br><span class="line">    User    sanchuang</span><br><span class="line">    Port    2233</span><br><span class="line"></span><br><span class="line">Host 192.168.0.54</span><br><span class="line">    User  sanchuang</span><br><span class="line">    Port 2233</span><br><span class="line">    ProxyCommand  ssh 192.168.0.31 -W %h:%p -l sanchuang -p 2233</span><br><span class="line"><span class="comment">#注：ProxyCommand表示 A通过跳板机(192.168.0.31)B登录到</span></span><br><span class="line"><span class="comment">#-------------------------------------------------------------------------------------------</span></span><br><span class="line">Host *	/ftp*	/10.* 以10网段开头的ip地址 ssh 10.0.0.1 跳到这个配置执行</span><br><span class="line">    User    sanchuang</span><br><span class="line">    Port    2233</span><br><span class="line">    ProxyCommand  ssh B nc %h %p -w 10 2&gt;/dev/null</span><br><span class="line"><span class="comment">#注：上课时冲突 前面写Host *与ssh B冲突</span></span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例8：远程执行命令 ssh B</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#不登录B机器，执行B机器上的命令 (一般用于脚本)</span></span><br><span class="line">[root@a ~]<span class="comment"># ssh B ifconfig	# 注：登录到B执行 ifconfig命令</span></span><br><span class="line">[root@a ~]<span class="comment"># ssh B ip a		# 注：登录到B执行 查看ip地址 命令 ；命令的返回是B机器给的</span></span><br><span class="line">[root@a ~]<span class="comment"># ssh B &quot;/usr/sbin/ip a&quot;	# 注：脚本里建议使用命令的绝对路径</span></span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例9：远程传输 scp (前提ssh可以连接)</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#注：传输文件</span></span><br><span class="line">[root@a ~]<span class="comment"># touch ahost</span></span><br><span class="line">[root@a ~]<span class="comment"># scp ahost B:/tmp	# 注：将A机器 当前路径ahost文件cp到B机器下的/tmp路径下</span></span><br><span class="line">ahost                                                                                                     100%    0     0.0KB/s   00:00  </span><br><span class="line">[root@a ~]<span class="comment"># scp B:/tmp/bhost ./	# 注：将B机器 /tmp/bhost文件cp到当前路径</span></span><br><span class="line">bhost                                                                                                     100%    0     0.0KB/s   00:00  </span><br><span class="line">[root@a ~]<span class="comment"># scp B:tmp/testhost ./	# 注：将B机器 家目录下 tmp/testhost文件cp到当前路径</span></span><br><span class="line"><span class="comment">#注：传输目录 </span></span><br><span class="line">[root@a ~]<span class="comment"># scp -r adir B:			# 注：将A机器当前路径下 adir文件夹 cp到B机器家目录下</span></span><br><span class="line">[root@a ~]<span class="comment"># scp -r adir B:bdir		# 注：复制文件夹并改名</span></span><br><span class="line">[root@a ~]<span class="comment"># scp -r adir B:bdir/		# 注：和上面的没有区别</span></span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例10：sftp传输文件 (前提ssh可以连接)</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#注：ftp文件传输</span></span><br><span class="line"><span class="comment">#注：sftp 传输文件 本地和异地传输文件</span></span><br><span class="line"><span class="comment">#注：格式 sftp 用户名@主机名</span></span><br><span class="line">[sanchuang@a ~]$ sftp B</span><br><span class="line">Connected to B.</span><br><span class="line">sftp&gt; <span class="built_in">ls</span>							<span class="comment"># 注：显示远程目录列表</span></span><br><span class="line">2q        aa        adir      bb        bdir      testdir   testdir2  testhost  </span><br><span class="line">sftp&gt; get bdir</span><br><span class="line">Fetching /home/sanchuang/bdir/ to bdir</span><br><span class="line">Cannot download non-regular file: /home/sanchuang/bdir/</span><br><span class="line">sftp&gt; mget bdir</span><br><span class="line">Fetching /home/sanchuang/bdir/ to bdir</span><br><span class="line">Cannot download non-regular file: /home/sanchuang/bdir/</span><br><span class="line">sftp&gt; get 2q						<span class="comment"># 注：get 远程路径	下载文件</span></span><br><span class="line">Fetching /home/sanchuang/2q to 2q</span><br><span class="line">/home/sanchuang/2q                                                                                       100%  226   107.5KB/s   00:00    </span><br><span class="line">sftp&gt; <span class="built_in">exit</span></span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例11：pssh pscp命令 (前提ssh可以连接)</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#批量处理</span></span><br><span class="line">pssh</span><br><span class="line">  -h  指定主机文件列表，内容格式”[user@]host[:Port]”</span><br><span class="line">  -i  指定每个服务器的处理信息</span><br><span class="line">[root@a ~]<span class="comment"># yum install pssh -y		# 注：没有的话需要安装epel源</span></span><br><span class="line">[root@a ~]<span class="comment"># cat ip.txt </span></span><br><span class="line">192.168.0.31:2233</span><br><span class="line">192.168.0.54:22</span><br><span class="line">[root@a ~]<span class="comment"># pssh -h ip.txt -i &quot;/usr/sbin/ip a&quot;</span></span><br><span class="line">[1] 17:18:13 [FAILURE] 192.168.0.54:22 Exited with error code 255、</span><br><span class="line">Permission denied (publickey,gssapi-keyex,gssapi-with-mic,password).</span><br><span class="line">……													<span class="comment"># 注：需要保证ssh能不能过去</span></span><br><span class="line">[2] 17:18:13 [SUCCESS] 192.168.0.31:2233			<span class="comment"># 注：返回SUCCESS表示执行成功</span></span><br><span class="line">……</span><br><span class="line">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000</span><br><span class="line">……</span><br><span class="line">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen </span><br><span class="line">……</span><br><span class="line"><span class="comment">#-------------------------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">#ip.txt里面可以这样写</span></span><br><span class="line">[root@a ~]<span class="comment"># vim ip.txt </span></span><br><span class="line">sanchuang@192.168.0.31:2233</span><br><span class="line">sanchuang@192.168.0.54:2233</span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例12：pscp.pssh 批量传输文件 (前提ssh可以连接)</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line">[root@a ~]<span class="comment"># pscp.pssh -h ip.txt pscptest /tmp</span></span><br><span class="line"><span class="comment"># 注：把当前目录下的pscptest文件传送到目标主机的/tmp目录下</span></span><br><span class="line">[root@a ~]<span class="comment"># vim ip.txt </span></span><br><span class="line">sanchuang@192.168.0.31:2233</span><br><span class="line">sanchuang@192.168.0.54:2233</span><br><span class="line">[root@a ~]<span class="comment"># pscp.pssh -h ip.txt pscptest /tmp</span></span><br><span class="line">[1] 17:41:31 [FAILURE] sanchuang@192.168.0.54:2233 Exited with error code 1</span><br><span class="line">[2] 17:41:31 [SUCCESS] sanchuang@192.168.0.31:2233</span><br><span class="line">============================================================================================</span><br><span class="line"></span><br><span class="line">示例13：fping 批量ping(前提ssh可以连接)</span><br><span class="line">--------------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">#注：批量ping 使用fping命令</span></span><br><span class="line">[root@a ~]<span class="comment"># yum install fping -y</span></span><br><span class="line">[root@a ~]<span class="comment"># fping -g 192.168.0.1/24		# 注：-g 根据网段去ping</span></span><br><span class="line">192.168.0.1 is alive</span><br><span class="line">……</span><br><span class="line">192.168.0.254 is unreachable</span><br><span class="line">[root@a ~]<span class="comment"># fping -f ip.txt 			# 注：-f根据文件指定ip去ping</span></span><br><span class="line">192.168.0.31 is alive</span><br><span class="line">192.168.0.54 is alive</span><br><span class="line">[root@a ~]<span class="comment"># vim ip.txt </span></span><br><span class="line">192.168.0.31</span><br><span class="line">192.168.0.54</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="三-ssh服务补充"><a href="#三-ssh服务补充" class="headerlink" title="三. ssh服务补充"></a>三. ssh服务补充</h2><h3 id="3-1-ssh"><a href="#3-1-ssh" class="headerlink" title="3.1 ssh"></a>3.1 ssh</h3><blockquote>
+<p>ssh —&gt; secure shell</p>
+<p>作用：远程登录和操作远程的服务器 —&gt; 信息加密 —&gt; 非常安全的远程登录协议</p>
+<p>#注：远程登录远程操控 省成本</p>
+<p>ssh协议 属于<strong>应用层</strong>的协议</p>
+<p>Linux：openssh —&gt; centos7/8自带</p>
+<p>Windows    没有ssh协议</p>
+</blockquote>
+<h3 id="3-2-命令"><a href="#3-2-命令" class="headerlink" title="3.2 命令"></a>3.2 命令</h3><blockquote>
+<p>命令：</p>
+<p>​        ssh</p>
+<p>​        scp                # 注：远程copy</p>
+<p>​        sftp</p>
+<p>​        ssh-keygen</p>
+<p>​        ssh-copy-id</p>
+</blockquote>
+<h3 id="3-3-登录方式"><a href="#3-3-登录方式" class="headerlink" title="3.3 登录方式"></a>3.3 登录方式</h3><blockquote>
+<p>登录方式：</p>
+<p>​        Xshell                # 注：不开源</p>
+<p>​        putty                 # 注：开源</p>
+<p>​        secureCRT        # 注：开源</p>
+<ol>
+<li>用户名和密码</li>
+</ol>
+<p>​        /etc/passwd        # 注：放用户名</p>
+<p>​        /etc/shadow        # 注：放密码</p>
+<ol>
+<li>密钥</li>
+</ol>
+<p>​        公钥和私钥</p>
+<p>​        public key —&gt; 公开        # 注：给别人</p>
+<p>​        private key                     # 注：自己所有</p>
+</blockquote>
+<h3 id="3-4-安全加固措施"><a href="#3-4-安全加固措施" class="headerlink" title="3.4 安全加固措施"></a>3.4 安全加固措施</h3><blockquote>
+<p>安全加固措施：</p>
+<ol>
+<li><p>修改端口号  22</p>
+<p>​    nmap             # 注：端口扫描</p>
+<p>​    nc                   # 注：端口扫描</p>
+<ol>
+<li><p>禁用root</p>
+<p>su                # 注：su 切换到root</p>
+</li>
+</ol>
+</li>
+<li><p>密码复杂性</p>
+</li>
+<li><p>启用密钥            # 注：禁止密码认证</p>
+</li>
+<li><p>打补丁 或者 安装最新版本的ssh软件</p>
+</li>
+<li><p>iptables防火墙</p>
+</li>
+</ol>
+<p>#注：免密通道（密钥登录）</p>
+</blockquote>
+<h3 id="3-5-免密通道"><a href="#3-5-免密通道" class="headerlink" title="3.5 免密通道"></a>3.5 免密通道</h3><blockquote>
+<p>免密通道：</p>
+<p>​        单向信任                # 注：把密钥给其他主机</p>
+<p>​        双向信任                # 注：双方互给公钥</p>
+<p>#注：一般用root用户，为了安全起见用普通用户</p>
+</blockquote>
+<h3 id="3-6-ansible"><a href="#3-6-ansible" class="headerlink" title="3.6 ansible"></a>3.6 ansible</h3><blockquote>
+<p>ansible：自动化运维的工具：批量管理和操作</p>
+<p>#注：ansible批量管理 批量部署的软件；底层用的ssh协议，推荐建立免密通道</p>
+<p>#注：ansible软件 用Python写的</p>
+</blockquote>
+<h3 id="3-7-日志文件：-var-log-secure"><a href="#3-7-日志文件：-var-log-secure" class="headerlink" title="3.7 日志文件：/var/log/secure"></a>3.7 日志文件：/var/log/secure</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">日志文件：/var/log/secure</span><br><span class="line">[root@cPen_centos8 ssh]<span class="comment"># vim /etc/ssh/sshd_config </span></span><br><span class="line"><span class="comment"># Logging</span></span><br><span class="line"><span class="comment">#SyslogFacility AUTH</span></span><br><span class="line">SyslogFacility AUTHPRIV		<span class="comment"># 注：日志类型 认证类型 	AUTHPRIV 设置</span></span><br><span class="line"><span class="comment">#LogLevel INFO</span></span><br><span class="line"></span><br><span class="line">日志文件：</span><br><span class="line">	/var/log/secure</span><br><span class="line">[sanchuang@cPen_centos8 ~]$ ps aux|grep rsyslog			<span class="comment"># 注：外包日志的进程</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ssh将自己的日志功能外包给rsyslog服务去帮它记录日志</span><br><span class="line"></span><br><span class="line">[sanchuang@cPen_centos8 ~]$ vim /etc/rsyslog.conf </span><br><span class="line"><span class="comment"># The authpriv file has restricted access.</span></span><br><span class="line">authpriv.*                                              /var/log/secure</span><br></pre></td></tr></table></figure>
+<h3 id="3-8-ssh服务登录不了，如何排除？"><a href="#3-8-ssh服务登录不了，如何排除？" class="headerlink" title="3.8 ssh服务登录不了，如何排除？"></a>3.8 ssh服务登录不了，如何排除？</h3><blockquote>
+<p>ssh服务登录不了，如何排除？</p>
+<ol>
+<li><p>检测网络是否通畅</p>
+<p>ping</p>
+</li>
+<li><p>检测ssh服务是否启动，检查端口，selinux</p>
+</li>
+<li><p>ssh的配置：是否禁用root，是否禁用密码认证</p>
+</li>
+<li><p>检查防火墙iptables</p>
+<p>​        service firewalled stop</p>
+</li>
+<li><p>黑白名单                        # 注：centos6、7里面用，8里面没有</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="3-9-ssh免密通道"><a href="#3-9-ssh免密通道" class="headerlink" title="3.9 ssh免密通道"></a>3.9 ssh免密通道</h3><blockquote>
+<p>ssh免密通道</p>
+<ol>
+<li><p>生成密钥对</p>
+<p>​    ssh-keygen</p>
+<p>​    ssh-keygen -t ecdsa</p>
+</li>
+<li><p>上传公钥</p>
+<p>​    ssh-copy-id -i id_ecdsa.pub <a href="mailto:root@192.168.0.35">root@192.168.0.35</a></p>
+<p>​    ssh-copy-id -p 2299 -i id_ecdsa.pub <a href="mailto:root@192.168.0.35">root@192.168.0.35</a></p>
+</li>
+<li><p>远程连接</p>
+<p>​    ssh -p ‘2299’ ‘root@192.168.0.39’</p>
+</li>
+</ol>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">免密通道的建立步骤：</span><br><span class="line">[root@localhost .ssh]<span class="comment"># ssh-keygen -t ecdsa</span></span><br><span class="line">[root@localhost .ssh]<span class="comment"># ssh-copy-id -p 2299 -i id_ecdsa.pub root@192.168.0.39</span></span><br><span class="line">[root@localhost .ssh]<span class="comment"># ssh -p &#x27;2299&#x27; &#x27;root@192.168.0.39&#x27;</span></span><br><span class="line"></span><br><span class="line">known_hosts：存放我们曾经ssh连接过的机器的公钥</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">scp	就是在2台机器之间底层使用ssh协议来拷贝文件或者文件夹</span><br><span class="line">[root@cPen_centos8 ssh]<span class="comment"># ssh root@192.168.0.24						# 注：远程登录</span></span><br><span class="line">[root@cPen_centos8 ssh]<span class="comment"># ssh root@192.168.0.24 df -Th				# 注：远程执行命令</span></span><br><span class="line">[root@cPen_python ssh]<span class="comment"># scp echo.sh root@192.168.0.35:/root			# 注：传文件  （源文件 远程）</span></span><br><span class="line">[root@cPen_python ssh]<span class="comment"># scp -r /boot root@192.168.0.35:/root		# 注：传文件夹</span></span><br><span class="line">[root@cPen_python ssh]<span class="comment"># scp -r root@192.168.0.35:/etc/passwd		# 注：拿文件夹</span></span><br><span class="line">[root@cPen_python ssh]<span class="comment"># ssh root@192.168.0.35 bash /root/echo.sh feng zhang wang</span></span><br><span class="line">scp	就是在2台机器之间底层使用ssh协议来拷贝文件或者文件夹</span><br><span class="line">---------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line">[root@cPen_centos8 ssh]<span class="comment"># getenforce 				# 注：查看selinux</span></span><br><span class="line">Disabled</span><br><span class="line">[root@cPen_centos8 ssh]<span class="comment"># setenforce 0				# 注：临时关闭selinux</span></span><br><span class="line">setenforce: SELinux is disabled</span><br><span class="line">---------------------------------------------------------------------------------------------------------------------------------</span><br><span class="line">[sanchuang@cPen_centos8 ~]$ ifdown ens33</span><br><span class="line">[sanchuang@cPen_centos8 ~]$ ifup ens33</span><br><span class="line"><span class="comment">#注：禁用root用户登录后，本地可以用root用户登录</span></span><br></pre></td></tr></table></figure>
+<hr>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://mycpen.github.io/blog">Mycpen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://mycpen.github.io/blog/posts/57744.html">https://mycpen.github.io/blog/posts/57744.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://mycpen.github.io/blog" target="_blank">Mycpen's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/blog/tags/Linux/">Linux</a><a class="post-meta__tags" href="/blog/tags/SSH/">SSH</a></div><div class="post_share"><div class="social-share" data-image="https://image.cpen.top/image/logo/linux-logo.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/blog/posts/46092.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/linux-logo.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">20_Linux基础-ssh服务2</div></div></a></div><div class="next-post pull-right"><a href="/blog/posts/22091.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/linux-logo.png" onerror="onerror=null;src='/blog/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">22_Linux基础-ansible1</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/blog/posts/33033.html" title="19_Linux基础-ssh服务1"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/linux-logo.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-28</div><div class="title">19_Linux基础-ssh服务1</div></div></a></div><div><a href="/blog/posts/46092.html" title="20_Linux基础-ssh服务2"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/linux-logo.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-28</div><div class="title">20_Linux基础-ssh服务2</div></div></a></div><div><a href="/blog/posts/34556.html" title="02_Linux基础-文件系统层次结构-提示符-进程-隐藏文件-通配符-绝对相对路径-其他基础命令"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/linux-logo.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-28</div><div class="title">02_Linux基础-文件系统层次结构-提示符-进程-隐藏文件-通配符-绝对相对路径-其他基础命令</div></div></a></div><div><a href="/blog/posts/62964.html" title="04_Linux基础-.&amp;..-cat-tac-重定向-EOF-基本命令"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/linux-logo.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-28</div><div class="title">04_Linux基础-.&amp;..-cat-tac-重定向-EOF-基本命令</div></div></a></div><div><a href="/blog/posts/43225.html" title="03_Linux基础-文件类型-主辅提示符-第1提示符-3个时间-stat-其他基础命令"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/linux-logo.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-28</div><div class="title">03_Linux基础-文件类型-主辅提示符-第1提示符-3个时间-stat-其他基础命令</div></div></a></div><div><a href="/blog/posts/43579.html" title="05_Linux基础-NGINX编译安装^判断是否启动^修改端口^启动停止重启^相关路径^中文乱码"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/linux-logo.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-28</div><div class="title">05_Linux基础-NGINX编译安装^判断是否启动^修改端口^启动停止重启^相关路径^中文乱码</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/avatar.png" onerror="this.onerror=null;this.src='/blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Mycpen</div><div class="author-info__description">一个有趣的博客</div></div><div class="card-info-data site-data is-center"><a href="/blog/archives/"><div class="headline">文章</div><div class="length-num">44</div></a><a href="/blog/tags/"><div class="headline">标签</div><div class="length-num">38</div></a><a href="/blog/categories/"><div class="headline">分类</div><div class="length-num">6</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/mycpen"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/mycpen" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-gitHub"></use></svg></a><a class="social-icon faa-parent animated-hover" href="mailto:mycpen@qq.com" target="_blank" title="Email"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-youxiang"></use></svg></a><a class="social-icon faa-parent animated-hover" href="/blog/atom.xml" target="_blank" title="RSS"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rss"></use></svg></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/266277871" target="_blank" title="BiliBili"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-bilibili"></use></svg></a><a class="social-icon faa-parent animated-hover" href="tencent://Message/?Uin=1533431376&amp;amp;websiteName=local.edu.com:8888=&amp;amp;Menu=yes" target="_blank" title="QQ"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-QQ1"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">生活明朗, 万物可爱.</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#21-Linux%E5%9F%BA%E7%A1%80-ssh%E6%9C%8D%E5%8A%A13"><span class="toc-text">21_Linux基础-ssh服务3</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80-%E5%9B%9E%E9%A1%BE"><span class="toc-text">一. 回顾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-ssh"><span class="toc-text">1.1 ssh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%8A%A0%E5%AF%86%E6%8A%80%E6%9C%AF"><span class="toc-text">1.2 加密技术</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-ssh%E7%99%BB%E5%BD%95"><span class="toc-text">1.3 ssh登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-ssh%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C%E5%B7%A5%E5%85%B7"><span class="toc-text">1.4 ssh远程操作工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-5-%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="toc-text">1.5 服务配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-6-%E6%9F%A5%E7%9C%8Bssh%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E6%83%85%E5%86%B5"><span class="toc-text">1.6 查看ssh服务启动情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-7-ssh-agent"><span class="toc-text">1.7 ssh-agent</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C-%E8%B7%B3%E6%9D%BF%E6%9C%BA"><span class="toc-text">二. 跳板机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89-ssh%E6%9C%8D%E5%8A%A1%E8%A1%A5%E5%85%85"><span class="toc-text">三. ssh服务补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-ssh"><span class="toc-text">3.1 ssh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%91%BD%E4%BB%A4"><span class="toc-text">3.2 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%99%BB%E5%BD%95%E6%96%B9%E5%BC%8F"><span class="toc-text">3.3 登录方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%AE%89%E5%85%A8%E5%8A%A0%E5%9B%BA%E6%8E%AA%E6%96%BD"><span class="toc-text">3.4 安全加固措施</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-%E5%85%8D%E5%AF%86%E9%80%9A%E9%81%93"><span class="toc-text">3.5 免密通道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-ansible"><span class="toc-text">3.6 ansible</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6%EF%BC%9A-var-log-secure"><span class="toc-text">3.7 日志文件：&#x2F;var&#x2F;log&#x2F;secure</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-ssh%E6%9C%8D%E5%8A%A1%E7%99%BB%E5%BD%95%E4%B8%8D%E4%BA%86%EF%BC%8C%E5%A6%82%E4%BD%95%E6%8E%92%E9%99%A4%EF%BC%9F"><span class="toc-text">3.8 ssh服务登录不了，如何排除？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-9-ssh%E5%85%8D%E5%AF%86%E9%80%9A%E9%81%93"><span class="toc-text">3.9 ssh免密通道</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/63259.html" title="01_PHP-CentOS8.2 编译安装 PHP8.1.10"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/php-logo.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="01_PHP-CentOS8.2 编译安装 PHP8.1.10"/></a><div class="content"><a class="title" href="/blog/posts/63259.html" title="01_PHP-CentOS8.2 编译安装 PHP8.1.10">01_PHP-CentOS8.2 编译安装 PHP8.1.10</a><time datetime="2022-09-10T04:00:00.000Z" title="发表于 2022-09-10 12:00:00">2022-09-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/62975.html" title="10_Python-CSDN_内存管理"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/python-logo.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="10_Python-CSDN_内存管理"/></a><div class="content"><a class="title" href="/blog/posts/62975.html" title="10_Python-CSDN_内存管理">10_Python-CSDN_内存管理</a><time datetime="2022-09-01T09:10:00.000Z" title="发表于 2022-09-01 17:10:00">2022-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/9186.html" title="09_Python-CSDN_上下文管理器"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/python-logo.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="09_Python-CSDN_上下文管理器"/></a><div class="content"><a class="title" href="/blog/posts/9186.html" title="09_Python-CSDN_上下文管理器">09_Python-CSDN_上下文管理器</a><time datetime="2022-09-01T09:00:00.000Z" title="发表于 2022-09-01 17:00:00">2022-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/13683.html" title="08_Python-CSDN_面向对象练习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/python-logo.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="08_Python-CSDN_面向对象练习"/></a><div class="content"><a class="title" href="/blog/posts/13683.html" title="08_Python-CSDN_面向对象练习">08_Python-CSDN_面向对象练习</a><time datetime="2022-09-01T08:50:00.000Z" title="发表于 2022-09-01 16:50:00">2022-09-01</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/blog/posts/46.html" title="07_Python-CSDN_高阶函数"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://image.cpen.top/image/logo/python-logo.png" onerror="this.onerror=null;this.src='/blog/img/404.jpg'" alt="07_Python-CSDN_高阶函数"/></a><div class="content"><a class="title" href="/blog/posts/46.html" title="07_Python-CSDN_高阶函数">07_Python-CSDN_高阶函数</a><time datetime="2022-09-01T08:40:00.000Z" title="发表于 2022-09-01 16:40:00">2022-09-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2022 By Mycpen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral">本网站由 <img style="height:30px;" align="absmiddle" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/blog/img/logo/又拍云_logo5.png" data-lazy-src="/blog/img/logo/又拍云_logo5.png"> 提供 CDN 加速 / 云存储服务</a><br><a href="http://beian.miit.gov.cn" target="_blank">苏ICP备2020069048号-1</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"></div><div id="rightside-config-show"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/blog/js/utils.js"></script><script src="/blog/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/blog/js/search/local-search.js"></script><div class="js-pjax"><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://tk.cpen.top/',
+      region: '',
+      onCommentLoaded: function () {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://tk.cpen.top/',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><div class="aplayer no-destroy" data-id="7039481526" data-server="tencent" data-type="playlist"   data-order="list" data-fixed="true" data-preload="auto" data-autoplay="false" data-mutex="true" ></div><script>window.$crisp = [];
+window.CRISP_WEBSITE_ID = "6e386255-78ac-4ce4-b214-3ceda286370d";
+(function () {
+  d = document;
+  s = d.createElement("script");
+  s.src = "https://client.crisp.chat/l.js";
+  s.async = 1;
+  d.getElementsByTagName("head")[0].appendChild(s);
+})();
+$crisp.push(["safe", true])
+
+if (true) {
+  $crisp.push(["do", "chat:hide"])
+  $crisp.push(["on", "chat:closed", function() {
+    $crisp.push(["do", "chat:hide"])
+  }])
+  var chatBtnFn = () => {
+    var chatBtn = document.getElementById("chat_btn")
+    chatBtn.addEventListener("click", function(){
+      $crisp.push(["do", "chat:show"])
+      $crisp.push(["do", "chat:open"])
+
+    });
+  }
+  chatBtnFn()
+} else {
+  if (false) {
+    function chatBtnHide () {
+      $crisp.push(["do", "chat:hide"])
+    }
+    function chatBtnShow () {
+      $crisp.push(["do", "chat:show"])
+    }
+  }
+}</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show","#web_bg",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"]):not([href="/music/"]):not([href="/no-pjax/"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: true,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+  typeof disqusjs === 'object' && disqusjs.destroy()
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', 'G-9CFHJMB7RD', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_footer_beautify_injector_config(){
+    var parent_div_git = document.getElementById('footer-wrap');
+    var item_html = '<div id="workboard"></div>';
+    console.log('已挂载butterfly_footer_beautify')
+    parent_div_git.insertAdjacentHTML("beforeend",item_html)
+    }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var flag = 0;
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_footer_beautify_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_footer_beautify_injector_config();
+  }
+  </script><script async src="/blog/js/runtime.min.js"></script><script data-pjax src="https://cdn.cbd.int/hexo-filter-gitcalendar/lib/gitcalendar.js"></script><script data-pjax>
+  function gitcalendar_injector_config(){
+      var parent_div_git = document.getElementById('recent-posts');
+      var item_html = '<div class="recent-post-item" style="width:100%;height:auto;padding:10px;"><style>#git_container{min-height: 280px}@media screen and (max-width:650px) {#git_container{min-height: 0px}}</style><div id="git_loading" style="width:10%;height:100%;margin:0 auto;display: block;"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve"><path fill="#d0d0d0" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z" transform="rotate(275.098 25 25)"><animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25" dur="0.6s" repeatCount="indefinite"></animatetransform></path></svg><style>#git_container{display: none;}</style></div><div id="git_container"></div></div>';
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+      console.log('已挂载gitcalendar')
+      }
+
+    if( document.getElementById('recent-posts') && (location.pathname ==='/blog/'|| '/blog/' ==='all')){
+        gitcalendar_injector_config()
+        GitCalendarInit("https://github.cpen.top/api?mycpen",['#ebedf0', '#fdcdec', '#fc9bd9', '#fa6ac5', '#f838b2', '#f5089f', '#c4067e', '#92055e', '#540336', '#48022f', '#30021f'],'mycpen')
+    }
+  </script><script async src="/blog/js/ali_font.js"></script><!-- hexo injector body_end end --></body></html>

@@ -11,7 +11,7 @@
 
 
 ## 二. 托管
-- 云服务器、GitHub；
+- 云服务器、GitHub、Gitee；
 - 站点：
   1. [https://cpen.top](https://cpen.top/)
   2. [https://mycpen.github.io/blog](https://mycpen.github.io/blog)

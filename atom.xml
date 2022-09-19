@@ -33,11 +33,11 @@
     <category term="Error" scheme="https://cpen.top/blog/categories/Error/"/>
     
     
-    <category term="Troubleshooting" scheme="https://cpen.top/blog/tags/Troubleshooting/"/>
-    
     <category term="Error" scheme="https://cpen.top/blog/tags/Error/"/>
     
     <category term="Nginx" scheme="https://cpen.top/blog/tags/Nginx/"/>
+    
+    <category term="Troubleshooting" scheme="https://cpen.top/blog/tags/Troubleshooting/"/>
     
   </entry>
   
@@ -315,9 +315,9 @@
     <category term="Hexo" scheme="https://cpen.top/blog/categories/Hexo/"/>
     
     
-    <category term="Hexo" scheme="https://cpen.top/blog/tags/Hexo/"/>
-    
     <category term="Troubleshooting" scheme="https://cpen.top/blog/tags/Troubleshooting/"/>
+    
+    <category term="Hexo" scheme="https://cpen.top/blog/tags/Hexo/"/>
     
     <category term="Git" scheme="https://cpen.top/blog/tags/Git/"/>
     
@@ -361,9 +361,9 @@
     <category term="Hexo" scheme="https://cpen.top/blog/categories/Hexo/"/>
     
     
-    <category term="Hexo" scheme="https://cpen.top/blog/tags/Hexo/"/>
-    
     <category term="Troubleshooting" scheme="https://cpen.top/blog/tags/Troubleshooting/"/>
+    
+    <category term="Hexo" scheme="https://cpen.top/blog/tags/Hexo/"/>
     
   </entry>
   
@@ -409,13 +409,13 @@
     
     <category term="Django" scheme="https://cpen.top/blog/tags/Django/"/>
     
-    <category term="MTV" scheme="https://cpen.top/blog/tags/MTV/"/>
-    
     <category term="HTTP" scheme="https://cpen.top/blog/tags/HTTP/"/>
     
     <category term="GET" scheme="https://cpen.top/blog/tags/GET/"/>
     
     <category term="POST" scheme="https://cpen.top/blog/tags/POST/"/>
+    
+    <category term="MTV" scheme="https://cpen.top/blog/tags/MTV/"/>
     
     <category term="MVC" scheme="https://cpen.top/blog/tags/MVC/"/>
     

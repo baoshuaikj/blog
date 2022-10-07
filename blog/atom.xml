@@ -409,9 +409,9 @@
     
     <category term="Django" scheme="https://cpen.top/blog/tags/Django/"/>
     
-    <category term="HTTP" scheme="https://cpen.top/blog/tags/HTTP/"/>
-    
     <category term="MTV" scheme="https://cpen.top/blog/tags/MTV/"/>
+    
+    <category term="HTTP" scheme="https://cpen.top/blog/tags/HTTP/"/>
     
     <category term="GET" scheme="https://cpen.top/blog/tags/GET/"/>
     

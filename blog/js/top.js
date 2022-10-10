@@ -1,0 +1,1 @@
+function percent(){document.getElementById("page-name").innerText=document.title.split(" | 陈鹏的个人主页")[0]}window.onscroll=percent;
